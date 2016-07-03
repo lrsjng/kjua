@@ -8,7 +8,7 @@ module.exports = options => {
 
     const qr = qrcode(settings.text, settings.ecLevel, settings.minVersion, settings.quiet);
     const ratio = settings.ratio || dpr;
-    const canvas = createCanvas(settings.size, ratio);
+    const canvas = createCanvas(settings.size, ratio, settings.canvas);
     const context = canvas.getContext('2d');
 
     context.scale(ratio, ratio);
