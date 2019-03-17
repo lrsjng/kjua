@@ -2,31 +2,31 @@ const win = window; // eslint-disable-line no-undef
 const doc = win.document;
 const dpr = win.devicePixelRatio || 1;
 const create = name => doc.createElement(name);
-const getAttr = (el, key) => el.getAttribute(key);
-const setAttr = (el, key, value) => el.setAttribute(key, value);
+const get_attr = (el, key) => el.getAttribute(key);
+const set_attr = (el, key, value) => el.setAttribute(key, value);
 
-const createCanvas = (size, ratio) => {
+const create_canvas = (size, ratio) => {
     const canvas = create('canvas');
-    setAttr(canvas, 'width', size * ratio);
-    setAttr(canvas, 'height', size * ratio);
+    set_attr(canvas, 'width', size * ratio);
+    set_attr(canvas, 'height', size * ratio);
     canvas.style.width = `${size}px`;
     canvas.style.height = `${size}px`;
     return canvas;
 };
 
-const canvasToImg = canvas => {
+const canvas_to_img = canvas => {
     const img = create('img');
-    setAttr(img, 'crossorigin', 'anonymous');
-    setAttr(img, 'src', canvas.toDataURL('image/png'));
-    setAttr(img, 'width', getAttr(canvas, 'width'));
-    setAttr(img, 'height', getAttr(canvas, 'height'));
+    set_attr(img, 'crossorigin', 'anonymous');
+    set_attr(img, 'src', canvas.toDataURL('image/png'));
+    set_attr(img, 'width', get_attr(canvas, 'width'));
+    set_attr(img, 'height', get_attr(canvas, 'height'));
     img.style.width = canvas.style.width;
     img.style.height = canvas.style.height;
     return img;
 };
 
 module.exports = {
-    createCanvas,
-    canvasToImg,
+    create_canvas,
+    canvas_to_img,
     dpr
 };

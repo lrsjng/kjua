@@ -5,9 +5,6 @@
     es6: true
     node: true
 
-  ecmaFeatures:
-    ecmaVersion: 6
-
   rules:
     array-bracket-spacing: [2, never]
     arrow-parens: [2, as-needed]
@@ -18,7 +15,7 @@
     comma-dangle: [2, never]
     comma-spacing: [2, {before: false, after: true}]
     comma-style: [2, last]
-    complexity: [1, 10]
+    complexity: [1, 16] ###
     computed-property-spacing: [2, never]
     consistent-return: 2
     consistent-this: [2, self]

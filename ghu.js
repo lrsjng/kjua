@@ -1,5 +1,5 @@
 const {resolve, join} = require('path');
-const {ghu, includeit, jszip, mapfn, pug, read, remove, run, uglify, webpack, wrap, write} = require('ghu');
+const {ghu, includeit, jszip, mapfn, pug, read, remove, uglify, webpack, wrap, write} = require('ghu');
 
 const NAME = 'kjua';
 
@@ -20,10 +20,6 @@ ghu.before(runtime => {
 
 ghu.task('clean', () => {
     return remove(`${BUILD}, ${DIST}`);
-});
-
-ghu.task('lint', () => {
-    return run('eslint .', {stdio: 'inherit'});
 });
 
 ghu.task('build:script', runtime => {

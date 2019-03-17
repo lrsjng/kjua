@@ -1,48 +1,48 @@
-const drawModuleRounded = require('./drawRounded');
-const drawMode = require('./drawMode');
+const draw_module_rounded = require('./draw_rounded');
+const draw_mode = require('./draw_mode');
 
-const drawBackground = (context, settings) => {
-    context.fillStyle = settings.back;
-    context.fillRect(0, 0, settings.size, settings.size);
+const draw_background = (ctx, settings) => {
+    ctx.fillStyle = settings.back;
+    ctx.fillRect(0, 0, settings.size, settings.size);
 };
 
-const drawModuleDefault = (qr, context, settings, width, row, col) => {
+const draw_module_default = (qr, ctx, settings, width, row, col) => {
     if (qr.isDark(row, col)) {
-        context.rect(col * width, row * width, width, width);
+        ctx.rect(col * width, row * width, width, width);
     }
 };
 
-const drawModules = (qr, context, settings) => {
+const draw_modules = (qr, ctx, settings) => {
     if (!qr) {
         return;
     }
 
-    const drawModule = settings.rounded > 0 && settings.rounded <= 100 ? drawModuleRounded : drawModuleDefault;
-    const moduleCount = qr.moduleCount;
+    const draw_module = settings.rounded > 0 && settings.rounded <= 100 ? draw_module_rounded : draw_module_default;
+    const mod_count = qr.moduleCount;
 
-    let moduleSize = settings.size / moduleCount;
+    let mod_size = settings.size / mod_count;
     let offset = 0;
     if (settings.crisp) {
-        moduleSize = Math.floor(moduleSize);
-        offset = Math.floor((settings.size - moduleSize * moduleCount) / 2);
+        mod_size = Math.floor(mod_size);
+        offset = Math.floor((settings.size - mod_size * mod_count) / 2);
     }
 
-    context.translate(offset, offset);
-    context.beginPath();
-    for (let row = 0; row < moduleCount; row += 1) {
-        for (let col = 0; col < moduleCount; col += 1) {
-            drawModule(qr, context, settings, moduleSize, row, col);
+    ctx.translate(offset, offset);
+    ctx.beginPath();
+    for (let row = 0; row < mod_count; row += 1) {
+        for (let col = 0; col < mod_count; col += 1) {
+            draw_module(qr, ctx, settings, mod_size, row, col);
         }
     }
-    context.fillStyle = settings.fill;
-    context.fill();
-    context.translate(-offset, -offset);
+    ctx.fillStyle = settings.fill;
+    ctx.fill();
+    ctx.translate(-offset, -offset);
 };
 
-const draw = (qr, context, settings) => {
-    drawBackground(context, settings);
-    drawModules(qr, context, settings);
-    drawMode(context, settings);
+const draw = (qr, ctx, settings) => {
+    draw_background(ctx, settings);
+    draw_modules(qr, ctx, settings);
+    draw_mode(ctx, settings);
 };
 
 module.exports = draw;

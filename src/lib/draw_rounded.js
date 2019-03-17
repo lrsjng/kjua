@@ -1,13 +1,13 @@
-const wrapContext = context => {
+const wrap_ctx = ctx => {
     return {
-        c: context,
+        c: ctx,
         m(...args) {this.c.moveTo(...args); return this;},
         l(...args) {this.c.lineTo(...args); return this;},
         a(...args) {this.c.arcTo(...args); return this;}
     };
 };
 
-const drawDark = (ctx, l, t, r, b, rad, nw, ne, se, sw) => {
+const draw_dark = (ctx, l, t, r, b, rad, nw, ne, se, sw) => {
     if (nw) {
         ctx.m(l + rad, t);
     } else {
@@ -39,7 +39,7 @@ const drawDark = (ctx, l, t, r, b, rad, nw, ne, se, sw) => {
     }
 };
 
-const drawLight = (ctx, l, t, r, b, rad, nw, ne, se, sw) => {
+const draw_light = (ctx, l, t, r, b, rad, nw, ne, se, sw) => {
     if (nw) {
         ctx.m(l + rad, t).l(l, t).l(l, t + rad).a(l, t, l + rad, t, rad);
     }
@@ -57,7 +57,7 @@ const drawLight = (ctx, l, t, r, b, rad, nw, ne, se, sw) => {
     }
 };
 
-const drawModule = (qr, context, settings, width, row, col) => {
+const draw_mod = (qr, ctx, settings, width, row, col) => {
     const left = col * width;
     const top = row * width;
     const right = left + width;
@@ -79,13 +79,13 @@ const drawModule = (qr, context, settings, width, row, col) => {
     const dSW = isDark(rowB, colL);
     const dW = isDark(row, colL);
 
-    const ctx = wrapContext(context);
+    ctx = wrap_ctx(ctx);
 
     if (dC) {
-        drawDark(ctx, left, top, right, bottom, radius, !dN && !dW, !dN && !dE, !dS && !dE, !dS && !dW);
+        draw_dark(ctx, left, top, right, bottom, radius, !dN && !dW, !dN && !dE, !dS && !dE, !dS && !dW);
     } else {
-        drawLight(ctx, left, top, right, bottom, radius, dN && dW && dNW, dN && dE && dNE, dS && dE && dSE, dS && dW && dSW);
+        draw_light(ctx, left, top, right, bottom, radius, dN && dW && dNW, dN && dE && dNE, dS && dE && dSE, dS && dW && dSW);
     }
 };
 
-module.exports = drawModule;
+module.exports = draw_mod;
