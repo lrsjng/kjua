@@ -24,7 +24,7 @@ const minCode = (text, level, minVersion = 1) => {
             };
             return {text, level, version, moduleCount, isDark};
         } catch (err) {
-            if (!RE_CODE_LENGTH_OVERFLOW.test(err.message)) {
+            if (!(version < 40 && RE_CODE_LENGTH_OVERFLOW.test(err.message))) {
                 throw err;
             }
         }
