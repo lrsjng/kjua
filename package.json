@@ -1,6 +1,6 @@
 {
   "name": "kjua",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Dynamically generated QR codes for modern browsers.",
   "homepage": "https://larsjung.de/kjua/",
   "bugs": "https://github.com/lrsjng/kjua/issues",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "babel-loader": "7.1.1",
     "babel-preset-env": "1.7.0",
-    "eslint": "5.15.2",
+    "eslint": "5.15.3",
     "ghu": "0.13.0"
   },
   "engines": {

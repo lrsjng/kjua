@@ -32,7 +32,7 @@ const draw_image = (ctx, settings) => {
     const iw = sw * size;
     const ih = sh * size;
 
-    ctx.draw_image(settings.image, x, y, iw, ih);
+    ctx.drawImage(settings.image, x, y, iw, ih);
 };
 
 const draw_mode = (ctx, settings) => {
