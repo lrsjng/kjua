@@ -27,7 +27,9 @@ ghu.task('build:script', runtime => {
         mode: 'none',
         output: {
             library: NAME,
-            libraryTarget: 'umd'
+            libraryTarget: 'umd',
+            umdNamedDefine: true,
+            globalObject: '(typeof self !== \'undefined\' ? self : this)'
         },
         module: {
             rules: [
