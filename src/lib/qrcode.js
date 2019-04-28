@@ -1,17 +1,14 @@
 const RE_CODE_LENGTH_OVERFLOW = /code length overflow/i;
 
-const vendor_qrcode = (() => {
-    // @include "vendor/qrcode.js"
-    // @include "vendor/qrcode_UTF8.js"
-    return qrcode; // eslint-disable-line no-undef
-})();
+const qr_gen = require('qrcode-generator');
+qr_gen.stringToBytes = qr_gen.stringToBytesFuncs['UTF-8'];
 
 const min_qrcode = (text, level, min_ver = 1) => {
     min_ver = Math.max(1, min_ver);
 
     for (let version = min_ver; version <= 40; version += 1) {
         try {
-            const qr = vendor_qrcode(version, level);
+            const qr = qr_gen(version, level);
             qr.addData(text);
             qr.make();
             const moduleCount = qr.getModuleCount();
@@ -24,8 +21,8 @@ const min_qrcode = (text, level, min_ver = 1) => {
             };
             return {text, level, version, moduleCount, isDark};
         } catch (err) {
-            if (!(version < 40 && RE_CODE_LENGTH_OVERFLOW.test(err.message))) {
-                throw err;
+            if (!(version < 40 && RE_CODE_LENGTH_OVERFLOW.test(err))) {
+                throw new Error(err);
             }
         }
     }

@@ -1,4 +1,4 @@
-const win = window; // eslint-disable-line no-undef
+const win = global.window;
 const doc = win.document;
 const dpr = win.devicePixelRatio || 1;
 const create = name => doc.createElement(name);

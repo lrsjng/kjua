@@ -1,0 +1,21 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title #{pkg.name} #{pkg.version} Test Suite
+        style.
+            body {
+                font-family: "ubuntu mono", monospace;
+                margin: 0;
+                padding: 0;
+            }
+            h1 {
+                font-size: 24px;
+                margin: 16px;
+                padding: 0;
+            }
+
+    body
+        h1 #{pkg.name} #{pkg.version} Test Suite
+        script(src=`../${pkg.name}-${pkg.version}.min.js`)
+        script(src='scripts.js')
