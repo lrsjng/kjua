@@ -1,6 +1,6 @@
 {
   "name": "kjua-svg",
-  "version": "0.7.0",
+  "version": "1.6.0",
   "description": "Dynamically generated QR codes for modern browsers.",
   "homepage": "https://github.com/werthdavid/kjua",
   "bugs": "https://github.com/werthdavid/kjua/issues",
@@ -19,15 +19,17 @@
     "type": "git",
     "url": "https://github.com/werthdavid/kjua.git"
   },
-  "main": "dist/kjua.min.js",
+  "main": "kjua.min.js",
   "scripts": {
     "lint": "eslint .",
     "build": "node ghu release",
-    "precommit": "npm run -s lint && npm run -s build"
+    "precommit": "npm run -s lint && npm run -s build",
+    "package": "npm run -s build && copyfiles README.md package.json dist/"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "copyfiles": "^2.1.1",
     "eslint": "^5.16.0",
     "ghu": "^0.20.0",
     "qrcode-generator": "^1.4.3",
