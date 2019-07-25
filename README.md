@@ -1,14 +1,11 @@
 # kjua-svg
 
-[![license][license-img]][github] [![web][web-img]][web] [![github][github-img]][github] [![npm][npm-img]][npm]  
-[![version][npm-v-img]][npm] [![downloads][npm-dm-img]][npm]
-
 Dynamically generated QR codes for modern browsers.  
 Uses [QR Code Generator][qrcode] (MIT).
 
 # Demo
 
-Click here
+Click [here](https://werthdavid.github.io/kjua/)
 
 ## Differences to kjua
 
