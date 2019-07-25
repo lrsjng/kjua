@@ -3,7 +3,7 @@ const RE_CODE_LENGTH_OVERFLOW = /code length overflow/i;
 const qr_gen = require('qrcode-generator');
 qr_gen.stringToBytes = qr_gen.stringToBytesFuncs['UTF-8'];
 
-const min_qrcode = (text, level, min_ver = 1) => {
+const min_qrcode = (text, level, min_ver = 1, settings) => {
     min_ver = Math.max(1, min_ver);
 
     for (let version = min_ver; version <= 40; version += 1) {
@@ -19,7 +19,12 @@ const min_qrcode = (text, level, min_ver = 1) => {
                     col < moduleCount &&
                     qr.isDark(row, col);
             };
-            return {text, level, version, moduleCount, isDark};
+            let svgText;
+            if (settings.render === 'svg') {
+                const cellSize = (settings.size - settings.quiet * 2) / moduleCount;
+                svgText = settings.render === 'svg' ? qr.createSvgTag(cellSize, settings.quiet, true) : undefined;
+            }
+            return {text, level, version, moduleCount, isDark, svgText};
         } catch (err) {
             if (!(version < 40 && RE_CODE_LENGTH_OVERFLOW.test(err))) {
                 throw new Error(err);
@@ -29,8 +34,8 @@ const min_qrcode = (text, level, min_ver = 1) => {
     return null;
 };
 
-const quiet_qrcode = (text = '', level = 'L', min_ver = 1, quiet = 0) => {
-    const qr = min_qrcode(text, level, min_ver);
+const quiet_qrcode = (text = '', level = 'L', min_ver = 1, quiet = 0, settings) => {
+    const qr = min_qrcode(text, level, min_ver, settings);
     if (qr) {
         const prev_is_dark = qr.isDark;
         qr.moduleCount += 2 * quiet;

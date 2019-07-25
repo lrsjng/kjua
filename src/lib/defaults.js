@@ -3,7 +3,7 @@ module.exports = {
     render: 'image',
 
     // render pixel-perfect lines
-    crisp: true,
+    crisp: false,
 
     // minimum version: 1..40
     minVersion: 1,

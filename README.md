@@ -1,4 +1,4 @@
-# kjua
+# kjua-svg
 
 [![license][license-img]][github] [![web][web-img]][web] [![github][github-img]][github] [![npm][npm-img]][npm]  
 [![version][npm-v-img]][npm] [![downloads][npm-dm-img]][npm]
@@ -6,6 +6,27 @@
 Dynamically generated QR codes for modern browsers.  
 Uses [QR Code Generator][qrcode] (MIT).
 
+# Demo
+
+Click here
+
+## Differences to kjua
+
+This is basically just a fork of kjua that adds the possibility to render QR-codes as SVG.
+
+### Limitations
+
+Some options do not work when the code is rendered as SVG. These are:
+* crisp
+* rounded
+* mode
+* mSize
+* mPosX
+* mPosY
+* label
+* fontname
+* fontcolor
+* image
 
 ## License
 The MIT License (MIT)

@@ -1,14 +1,23 @@
 {
-  "name": "kjua",
-  "version": "0.6.0",
+  "name": "kjua-svg",
+  "version": "0.7.0",
   "description": "Dynamically generated QR codes for modern browsers.",
-  "homepage": "https://larsjung.de/kjua/",
-  "bugs": "https://github.com/lrsjng/kjua/issues",
-  "author": "Lars Jung <lrsjng@gmail.com> (https://larsjung.de)",
+  "homepage": "https://github.com/werthdavid/kjua",
+  "bugs": "https://github.com/werthdavid/kjua/issues",
+  "authors": [
+    {
+      "name": "Lars Jung",
+      "email": "lrsjng@gmail.com"
+    },
+    {
+      "name": "David Werth",
+      "email": "werth.david@gmail.com"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lrsjng/kjua.git"
+    "url": "https://github.com/werthdavid/kjua.git"
   },
   "main": "dist/kjua.min.js",
   "scripts": {
@@ -17,12 +26,12 @@
     "precommit": "npm run -s lint && npm run -s build"
   },
   "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@babel/preset-env": "7.4.4",
-    "eslint": "5.16.0",
-    "ghu": "0.20.0",
-    "qrcode-generator": "1.4.3",
-    "scar": "1.7.0"
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "eslint": "^5.16.0",
+    "ghu": "^0.20.0",
+    "qrcode-generator": "^1.4.3",
+    "scar": "^1.7.0"
   },
   "engines": {
     "node": ">=10.0.0"
