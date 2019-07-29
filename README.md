@@ -14,7 +14,6 @@ This is basically just a fork of kjua that adds the possibility to render QR-cod
 ### Limitations
 
 Some options do not work when the code is rendered as SVG. These are:
-* crisp
 * rounded
 * mode
 * mSize

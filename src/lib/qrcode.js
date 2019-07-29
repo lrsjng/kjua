@@ -20,9 +20,16 @@ const min_qrcode = (text, level, min_ver = 1, settings) => {
                     qr.isDark(row, col);
             };
             let svgText;
+            // SVG logic has to be here and not in draw_svg.js since we have access to QR-Generator only here
             if (settings.render === 'svg') {
-                const cellSize = (settings.size - settings.quiet * 2) / moduleCount;
-                svgText = settings.render === 'svg' ? qr.createSvgTag(cellSize, settings.quiet, true) : undefined;
+                const modCount = moduleCount + settings.quiet * 2;
+                let moduleSize = settings.size / modCount;
+                let offset = 0;
+                if (settings.crisp) {
+                    moduleSize = Math.floor(moduleSize);
+                    offset = Math.floor((settings.size - moduleSize * modCount) / 2);
+                }
+                svgText = settings.render === 'svg' ? qr.createSvgTag(moduleSize, (moduleSize * settings.quiet) + offset, true) : undefined;
             }
             return {text, level, version, moduleCount, isDark, svgText};
         } catch (err) {
