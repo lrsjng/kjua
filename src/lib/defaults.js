@@ -44,6 +44,7 @@ module.exports = {
     label: 'no label',
     fontname: 'sans',
     fontcolor: '#333',
+    fontoutline: true,
 
     // image element
     image: null

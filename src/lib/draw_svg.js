@@ -1,50 +1,46 @@
 const {create_canvas, dpr, calc_image_pos} = require('./dom');
+const SVGJS = require("svg.js");
 
 const draw_svg = (svgText, settings) => {
     const container = document.createElement("div");
     container.innerHTML = svgText;
-    const svgElem = container.children.item(0);
-    const rectElem = svgElem.children.item(0);
-    const pathElem = svgElem.children.item(1);
-
-    svgElem.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+    const svgElem = container.firstChild;
+    const svg = SVGJS(svgElem);
 
     // In crisp mode, it is possible that the SVG is not exactly 400px --> fix this
     if (settings.crisp) {
-        svgElem.setAttribute("width", settings.size + "px");
-        svgElem.setAttribute("height", settings.size + "px");
-        svgElem.setAttribute("viewBox", "0 0 " + settings.size + " " + settings.size);
+        svg.attr("width", settings.size + "px");
+        svg.attr("height", settings.size + "px");
+        svg.attr("viewBox", "0 0 " + settings.size + " " + settings.size);
     }
     // Rect --> background-color
     if (!!settings.back) {
-        rectElem.setAttribute("fill", settings.back);
+        svg.select("rect").fill(settings.back);
     }
     // Path --> foreground-color
     if (!!settings.fill) {
-        pathElem.setAttribute("fill", settings.fill);
+        svg.select("path").fill(settings.fill);
     }
     if (settings.mode === "label") {
-        const textElem = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        const tspanElem = document.createElementNS(null, "tspan");
-        tspanElem.textContent = settings.label;
-
         const rect = calc_text_pos(settings);
-        tspanElem.setAttributeNS(null, "x", rect.x.toString());
-        tspanElem.setAttributeNS(null, "y", rect.y.toString());
-        textElem.setAttributeNS(null, "fill", settings.fontcolor);
-        textElem.setAttributeNS(null, "font-family", settings.fontname);
-        textElem.setAttributeNS(null, "font-size", settings.mSize * 0.01 * settings.size + "px");
-        textElem.appendChild(tspanElem);
-        svgElem.appendChild(textElem);
+        const label = svg.text(add => {
+            add.tspan(settings.label);
+
+        });
+        label.x(rect.x);
+        label.y(rect.y);
+        label.attr("fill", settings.fontcolor);
+        label.attr("font-family", settings.fontname);
+        label.attr("font-size", settings.mSize * 0.01 * settings.size + "px");
+        // Outline-effect
+        if (settings.fontoutline) {
+            // TODO
+        }
     } else if (settings.mode === "image") {
-        const imageElem = document.createElementNS(null, "image");
-        const imagePos = calc_image_pos(settings);
-        imageElem.setAttributeNS(null, "width", imagePos.iw);
-        imageElem.setAttributeNS(null, "height", imagePos.ih);
-        imageElem.setAttributeNS(null, "x", imagePos.x);
-        imageElem.setAttributeNS(null, "y", imagePos.y);
-        imageElem.setAttribute("xlink:href", settings.image.getAttribute("src"));
-        svgElem.appendChild(imageElem);
+        const imgPos = calc_image_pos(settings);
+        const image = svg.image(settings.image.getAttribute("src"), imgPos.iw, imgPos.ih);
+        image.x(imgPos.x);
+        image.y(imgPos.y);
     }
     return svgElem;
 };
