@@ -1,3 +1,5 @@
+const {calc_image_pos} = require('./dom');
+
 const draw_label = (ctx, settings) => {
     const size = settings.size;
     const font = 'bold ' + settings.mSize * 0.01 * size + 'px ' + settings.fontname;
@@ -20,19 +22,8 @@ const draw_label = (ctx, settings) => {
 };
 
 const draw_image = (ctx, settings) => {
-    const size = settings.size;
-    const w = settings.image.naturalWidth || 1;
-    const h = settings.image.naturalHeight || 1;
-    const sh = settings.mSize * 0.01;
-    const sw = sh * w / h;
-    const sl = (1 - sw) * settings.mPosX * 0.01;
-    const st = (1 - sh) * settings.mPosY * 0.01;
-    const x = sl * size;
-    const y = st * size;
-    const iw = sw * size;
-    const ih = sh * size;
-
-    ctx.drawImage(settings.image, x, y, iw, ih);
+    const imagePos = calc_image_pos(settings);
+    ctx.drawImage(settings.image, imagePos.x, imagePos.y, imagePos.iw, imagePos.ih);
 };
 
 const draw_mode = (ctx, settings) => {

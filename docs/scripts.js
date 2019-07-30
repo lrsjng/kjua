@@ -86,10 +86,8 @@
 
         var container = el_by_id('container');
         var qrcode = kjua(options);
-        for_each(container.childNodes, function (child) {
-            container.removeChild(child);
-        });
-        if (qrcode) {
+        container.innerHTML = "";
+        if (!!qrcode) {
             container.appendChild(qrcode);
         }
     }

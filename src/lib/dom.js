@@ -14,7 +14,7 @@ const create_canvas = (size, ratio) => {
     return canvas;
 };
 
-const canvas_to_img = canvas => {
+const canvas_to_img = (canvas) => {
     const img = create('img');
     set_attr(img, 'crossorigin', 'anonymous');
     set_attr(img, 'src', canvas.toDataURL('image/png'));
@@ -25,8 +25,24 @@ const canvas_to_img = canvas => {
     return img;
 };
 
+const calc_image_pos = (settings) => {
+    const size = settings.size;
+    const w = settings.image.naturalWidth || 1;
+    const h = settings.image.naturalHeight || 1;
+    const sh = settings.mSize * 0.01;
+    const sw = sh * w / h;
+    const sl = (1 - sw) * settings.mPosX * 0.01;
+    const st = (1 - sh) * settings.mPosY * 0.01;
+    const x = sl * size;
+    const y = st * size;
+    const iw = sw * size;
+    const ih = sh * size;
+    return {x, y, iw, ih};
+};
+
 module.exports = {
     create_canvas,
     canvas_to_img,
+    calc_image_pos,
     dpr
 };

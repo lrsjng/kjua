@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
-    <title>kjua-svg 1.6.0 · Demo</title>
+    <title>kjua-svg · Demo</title>
     <meta content="demo for kjua (https://larsjung.de/kjua/)" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <script src="kjua.min.js"></script>
+    <script src="../dist/kjua.min.js"></script>
     <script src="scripts.js"></script>
 </head>
 <body>
 <div id="container"></div>
-<div class="control left"><a href="https://larsjung.de/kjua/" id="banner">kjua-svg 1.6.0</a>
+<div class="control left"><a href="https://github.com/werthdavid/kjua" id="banner">kjua-svg</a>
     <hr>
     <label for="render">RENDER MODE</label><select id="render">
-        <option selected="selected" value="canvas">canvas</option>
+        <option selected="selected" value="svg">SVG</option>
+        <option value="canvas">canvas</option>
         <option value="image">image</option>
-        <option value="svg">SVG</option>
     </select><label for="crisp">CRISP</label><select id="crisp">
         <option selected="selected" value="true">true</option>
         <option value="false">false</option>
@@ -26,16 +26,16 @@
     <hr>
     <label for="size">SIZE:</label><input id="size" max="1000" min="100" step="50" type="range" value="400">
     <label for="fill">FILL</label><input id="fill" type="color" value="#333333"><label
-        for="back">BACK</label><input id="back" type="color" value="#ffffff"><label for="text">CONTENT</label><textarea id="text">https://larsjung.de/kjua/</textarea>
+        for="back">BACK</label><input id="back" type="color" value="#ffffff"><label for="text">CONTENT</label><textarea id="text">https://github.com/werthdavid/kjua</textarea>
     <hr>
     <label for="minversion">MIN VERSION:</label><input id="minversion" max="10" min="1" step="1" type="range" value="1"><label for="eclevel">ERROR CORRECTION LEVEL</label><select id="eclevel">
         <option value="L">L - low (7%)</option>
         <option value="M">M - medium (15%)</option>
         <option value="Q">Q - quartile (25%)</option>
         <option selected="selected" value="H">H - high (30%)</option>
-    </select><label for="quiet">QUIET ZONE:</label><input id="quiet" max="40" min="0" step="1" type="range" value="1"><label for="rounded">ROUNDED CORNERS:</label><input id="rounded" max="100"
-                                                                                                                                                                         min="0" step="10" type="range"
-                                                                                                                                                                         value="100"></div>
+    </select>
+    <label for="quiet">QUIET ZONE:</label><input id="quiet" max="40" min="0" step="1" type="range" value="1">
+    <label for="rounded">ROUNDED CORNERS:</label><input id="rounded" max="100" min="0" step="10" type="range" value="0"></div>
 <div class="control right"><label for="mode">MODE</label><select id="mode">
     <option value="plain">plain</option>
     <option selected="selected" value="label">label</option>
