@@ -11,7 +11,7 @@ Uses [QR Code Generator][qrcode] (MIT).
 
 # Demo
 
-<img src="https://raw.githubusercontent.com/werthdavid/kjua-svg/master/docs/demo.png"/>
+<img src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/demo.png"/>
 
 Click [here](https://werthdavid.github.io/kjua/)
 
