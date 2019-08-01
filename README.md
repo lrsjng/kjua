@@ -7,7 +7,8 @@
 # kjua-svg
 
 Dynamically generated QR codes for modern browsers.  
-Uses [QR Code Generator][qrcode] (MIT).
+Uses [kjua](https://github.com/lrsjng/kjua) and
+[QR Code Generator](https://github.com/kazuhikoarase/qrcode-generator) (MIT).
 
 # Demo
 
