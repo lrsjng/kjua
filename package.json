@@ -1,6 +1,6 @@
 {
   "name": "kjua-svg",
-  "version": "1.6.3",
+  "version": "1.7.0",
   "description": "Dynamically generated QR codes for modern browsers.",
   "homepage": "https://github.com/werthdavid/kjua",
   "bugs": "https://github.com/werthdavid/kjua/issues",

@@ -1,12 +1,11 @@
 const win = global.window;
 const doc = win.document;
 const dpr = win.devicePixelRatio || 1;
-const create = name => doc.createElement(name);
 const get_attr = (el, key) => el.getAttribute(key);
 const set_attr = (el, key, value) => el.setAttribute(key, value);
 
 const create_canvas = (size, ratio) => {
-    const canvas = create('canvas');
+    const canvas = doc.createElement('canvas');
     set_attr(canvas, 'width', size * ratio);
     set_attr(canvas, 'height', size * ratio);
     canvas.style.width = `${size}px`;
@@ -15,7 +14,7 @@ const create_canvas = (size, ratio) => {
 };
 
 const canvas_to_img = (canvas) => {
-    const img = create('img');
+    const img = doc.createElement('img');
     set_attr(img, 'crossorigin', 'anonymous');
     set_attr(img, 'src', canvas.toDataURL('image/png'));
     set_attr(img, 'width', get_attr(canvas, 'width'));

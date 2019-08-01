@@ -42,7 +42,7 @@ Click [here](https://werthdavid.github.io/kjua/)
 * `label` additional label text (defaults to ``)
 * `fontname` font for additional label text (defaults to `sans-serif`)
 * `fontcolor` font-color for additional label text (defaults to `#333`)
-* `image` additional image (defaults to `undefined`, use an HTMLImageElement)
+* `image` additional image (defaults to `undefined`, use an HTMLImageElement or base64-string)
 
 More details can be found on [larsjung.de/kjua](https://larsjung.de/kjua/)
 

@@ -57,6 +57,11 @@
     }
 
     function update_qrcode() {
+        let image = val_by_id('image-text');
+        if (image === "") {
+            image = el_by_id('img-buffer');
+        }
+
         var options = {
             render: val_by_id('render'),
             crisp: val_by_id('crisp') === 'true',
@@ -81,7 +86,7 @@
             fontname: val_by_id('font'),
             fontcolor: val_by_id('fontcolor'),
 
-            image: el_by_id('img-buffer')
+            image
         };
 
         var container = el_by_id('container');
