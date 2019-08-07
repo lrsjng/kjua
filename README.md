@@ -2,7 +2,7 @@
 [![Dependency Status](https://david-dm.org/werthdavid/kjua-svg.svg)](https://david-dm.org/werthdavid/kjua-svg)
 [![Downloads](https://img.shields.io/npm/dm/kjua-svg.svg)](https://npmjs.org/package/kjua-svg)
 
-<img align="right" src="https://raw.githubusercontent.com/werthdavid/ngx-kjua/master/docs/readme-logo.png"/>
+<img align="right" src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/readme-logo.svg"/>
 
 # kjua-svg
 
@@ -25,15 +25,39 @@ Click [here](https://werthdavid.github.io/kjua/)
 
 ## Options
 
+### Crisp
+
+As you can set the size of the image, the amount of 'modules' (black/white boxes that make up the QR-code) is calculated based on the size and the amount of `quiet` modules. The calculation can result in an odd number so that a module is e.g. 4.5 pixels big. The resulting image will be drawn fuzzy if `crisp` is set to false. Setting it to `true` will result in 'sharp' lines.
+
+#### crisp false
+<img src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/no-crisp.jpg"/>
+
+#### crisp true
+<img src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/crisp.jpg"/>
+
+
+### Label
+Kjua lets you embed a text or image to the code. This can be set with the setting `mode`.
+This can reduce the readability of the code!
+
+### Image
+<img src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/image.png"/>
+
+### Image as Code
+<img src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/image-as-code.png"/>
+
+
+### All options
+
 * `text` encoded content (defaults to ``)
 * `render` render-mode: 'image', 'canvas', 'svg' (defaults to `image`)
 * `crisp` render pixel-perfect lines (defaults to `true`)
-* `minVersion` minimum version: 1..40(defaults to `1`)
+* `minVersion` minimum version: 1..40 (defaults to `1`)
 * `ecLevel` error correction level: 'L', 'M', 'Q' or 'H' (defaults to `L`)
 * `size` size in pixel (defaults to `200`)
 * `fill` code color (defaults to `#333`)
-* `back` background color (defaults to `#fff`)
-* `rounded` roundend corners in pc: 0..100 (defaults to `0`, not working if `render`is set to 'svg')
+* `back` background color (defaults to `#fff`, for transparent use `''` or `null`)
+* `rounded` roundend corners in pc: 0..100 (defaults to `0`, not working if `render`is set to `svg`)
 * `quiet` quiet zone in modules (defaults to `0`)
 * `mode` modes: 'plain', 'label' or 'image' (defaults to `plain`, set `label` or `image` property if you change this)
 * `mSize` label/image size in pc: 0..100 (defaults to `30`)
@@ -43,14 +67,20 @@ Click [here](https://werthdavid.github.io/kjua/)
 * `fontname` font for additional label text (defaults to `sans-serif`)
 * `fontcolor` font-color for additional label text (defaults to `#333`)
 * `image` additional image (defaults to `undefined`, use an HTMLImageElement or base64-string)
+* `imageAsCode` draw the image as part of the code (defaults to `false`)
 
 More details can be found on [larsjung.de/kjua](https://larsjung.de/kjua/)
 
 ## Differences to kjua
 
-This is basically just a fork of kjua that adds the possibility to render QR-codes as SVG.
+* possibility to render QR-codes as SVG
+* transparent background support
+* image can be provided as base64-string
+* Typescript-types
+* draw the image as part of the code --> `imageAsCode`
 
 ## Limitations
 
 Some options do not work when the code is rendered as SVG. These are:
 * rounded
+* when rendering SVG an embedded text doesn't have an outline like in canvas mode

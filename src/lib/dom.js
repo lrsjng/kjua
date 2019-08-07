@@ -4,13 +4,16 @@ const dpr = win.devicePixelRatio || 1;
 const get_attr = (el, key) => el.getAttribute(key);
 const set_attr = (el, key, value) => el.setAttribute(key, value);
 
-const create_canvas = (size, ratio) => {
+const create_canvas = (settings) => {
+    const ratio = settings.ratio || dpr;
     const canvas = doc.createElement('canvas');
-    set_attr(canvas, 'width', size * ratio);
-    set_attr(canvas, 'height', size * ratio);
-    canvas.style.width = `${size}px`;
-    canvas.style.height = `${size}px`;
-    return canvas;
+    set_attr(canvas, 'width', settings.size * ratio);
+    set_attr(canvas, 'height', settings.size * ratio);
+    canvas.style.width = `${settings.size}px`;
+    canvas.style.height = `${settings.size}px`;
+    const context = canvas.getContext('2d');
+    context.scale(ratio, ratio);
+    return context;
 };
 
 const canvas_to_img = (canvas) => {
@@ -42,6 +45,5 @@ const calc_image_pos = (settings) => {
 module.exports = {
     create_canvas,
     canvas_to_img,
-    calc_image_pos,
-    dpr
+    calc_image_pos
 };

@@ -21,17 +21,23 @@ const draw_label = (ctx, settings) => {
     ctx.fillText(settings.label, x, y);
 };
 
-const draw_image = (ctx, settings) => {
+const draw_image = (ctx, ctx2, settings) => {
     const imagePos = calc_image_pos(settings);
-    ctx.drawImage(settings.image, imagePos.x, imagePos.y, imagePos.iw, imagePos.ih);
+    if (settings.imageAsCode && !!ctx2) {
+        ctx2.globalCompositeOperation = "source-in";
+        ctx2.drawImage(settings.image, imagePos.x, imagePos.y, imagePos.iw, imagePos.ih);
+        ctx.drawImage(ctx2.canvas, 0, 0, settings.size, settings.size);
+    } else {
+        ctx.drawImage(settings.image, imagePos.x, imagePos.y, imagePos.iw, imagePos.ih);
+    }
 };
 
-const draw_mode = (ctx, settings) => {
+const draw_mode = (ctx, ctx2, settings) => {
     const mode = settings.mode;
     if (mode === 'label') {
         draw_label(ctx, settings);
     } else if (mode === 'image') {
-        draw_image(ctx, settings);
+        draw_image(ctx, ctx2, settings);
     }
 };
 

@@ -24,6 +24,11 @@
         return el && el.value;
     }
 
+    function checked_by_id(id) {
+        var el = el_by_id(id);
+        return el && el.checked;
+    }
+
     function int_by_id(id) {
         return parseInt(val_by_id(id), 10);
     }
@@ -85,6 +90,8 @@
             label: val_by_id('label'),
             fontname: val_by_id('font'),
             fontcolor: val_by_id('fontcolor'),
+
+            imageAsCode: checked_by_id('image-as-code'),
 
             image
         };

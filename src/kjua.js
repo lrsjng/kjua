@@ -1,4 +1,4 @@
-const {create_canvas, canvas_to_img, dpr} = require('./lib/dom');
+const {canvas_to_img} = require('./lib/dom');
 const defaults = require('./lib/defaults');
 const qrcode = require('./lib/qrcode');
 const draw = require('./lib/draw');
@@ -20,12 +20,5 @@ module.exports = options => {
         return draw_svg(qr.svgText, settings);
     }
 
-    const ratio = settings.ratio || dpr;
-    const canvas = create_canvas(settings.size, ratio);
-    const context = canvas.getContext('2d');
-
-    context.scale(ratio, ratio);
-    draw(qr, context, settings);
-
-    return settings.render === 'image' ? canvas_to_img(canvas) : canvas;
+    return draw(qr, settings);
 };

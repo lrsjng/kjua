@@ -1,9 +1,9 @@
 module.exports = {
-    // render method: 'canvas' or 'image'
-    render: 'image',
+    // render method: 'canvas' or 'image' or 'svg'
+    render: 'svg',
 
     // render pixel-perfect lines
-    crisp: false,
+    crisp: true,
 
     // minimum version: 1..40
     minVersion: 1,
@@ -47,5 +47,8 @@ module.exports = {
     fontoutline: true,
 
     // image element
-    image: null
+    image: null,
+
+    // draw the image as part of the code
+    imageAsCode: false
 };

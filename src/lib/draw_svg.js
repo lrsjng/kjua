@@ -1,4 +1,4 @@
-const {create_canvas, dpr, calc_image_pos} = require('./dom');
+const {create_canvas, calc_image_pos} = require('./dom');
 const SVGJS = require("svg.js");
 
 const draw_svg = (svgText, settings) => {
@@ -46,10 +46,7 @@ const draw_svg = (svgText, settings) => {
 };
 
 const calc_text_pos = (settings) => {
-    const ratio = settings.ratio || dpr;
-    const canvas = create_canvas(settings.size, ratio);
-    const context = canvas.getContext('2d');
-    context.scale(ratio, ratio);
+    const context = create_canvas(settings);
 
     const size = settings.size;
     const font = 'bold ' + settings.mSize * 0.01 * size + 'px ' + settings.fontname;
