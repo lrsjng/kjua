@@ -1,88 +1,92 @@
-declare function kjua(options: KjuaOptions);
+declare function kjua(opts: kjua.KjuaOptions): any;
 
-export interface KjuaOptions {
-    /**
-     * Render the image as either SVG, canvas or PNG-image
-     */
-    render?: 'image' | 'svg' | 'canvas';
+declare namespace kjua {
+    interface KjuaOptions {
+        /**
+         * Render the image as either SVG, canvas or PNG-image
+         */
+        render?: 'image' | 'svg' | 'canvas';
 
-    /**
-     * render pixel-perfect lines
-     */
-    crisp?: boolean;
+        /**
+         * render pixel-perfect lines
+         */
+        crisp?: boolean;
 
-    /**
-     * minimum version: 1..40
-     */
-    minVersion?: number;
+        /**
+         * minimum version: 1..40
+         */
+        minVersion?: number;
 
-    /**
-     * error correction level: 'L', 'M', 'Q' or 'H'
-     */
-    ecLevel?: 'L' | 'M' | 'Q' | 'H';
+        /**
+         * error correction level: 'L', 'M', 'Q' or 'H'
+         */
+        ecLevel?: 'L' | 'M' | 'Q' | 'H';
 
-    /**
-     * size in pixel
-     */
-    size?: number;
+        /**
+         * size in pixel
+         */
+        size?: number;
 
-    /**
-     * pixel-ratio, null for devicePixelRatio
-     */
-    ratio?: number | null;
+        /**
+         * pixel-ratio, null for devicePixelRatio
+         */
+        ratio?: number | null;
 
-    /**
-     * code color
-     */
-    fill?: string;
+        /**
+         * code color
+         */
+        fill?: string;
 
-    /**
-     * background color
-     */
-    back?: string;
+        /**
+         * background color
+         */
+        back?: string;
 
-    /**
-     * content
-     */
-    text?: string;
+        /**
+         * content
+         */
+        text?: string;
 
-    /**
-     * roundend corners in pc: 0..100
-     */
-    rounded?: number;
+        /**
+         * roundend corners in pc: 0..100
+         */
+        rounded?: number;
 
-    /**
-     * quiet zone in modules
-     */
-    quiet?: number;
+        /**
+         * quiet zone in modules
+         */
+        quiet?: number;
 
-    /**
-     * modes: 'plain', 'label' or 'image'
-     */
-    mode?: 'plain' | 'label' | 'image';
+        /**
+         * modes: 'plain', 'label' or 'image'
+         */
+        mode?: 'plain' | 'label' | 'image';
 
-    /**
-     * label/image size and pos in pc: 0..100
-     */
-    mSize?: number;
-    mPosX?: number;
-    mPosY?: number;
+        /**
+         * label/image size and pos in pc: 0..100
+         */
+        mSize?: number;
+        mPosX?: number;
+        mPosY?: number;
 
-    /**
-     * label
-     */
-    label?: string;
-    fontname?: string;
-    fontcolor?: string;
-    fontoutline?: boolean;
+        /**
+         * label
+         */
+        label?: string;
+        fontname?: string;
+        fontcolor?: string;
+        fontoutline?: boolean;
 
-    /**
-     * image element
-     */
-    image?: null | HTMLImageElement | string;
+        /**
+         * image element
+         */
+        image?: null | HTMLImageElement | string;
 
-    /**
-     * draw the image as part of the code
-     */
-    imageAsCode?: boolean;
+        /**
+         * draw the image as part of the code
+         */
+        imageAsCode?: boolean;
+    }
 }
+
+export = kjua;

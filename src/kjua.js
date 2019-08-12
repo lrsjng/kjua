@@ -1,4 +1,3 @@
-const {canvas_to_img} = require('./lib/dom');
 const defaults = require('./lib/defaults');
 const qrcode = require('./lib/qrcode');
 const draw = require('./lib/draw');
