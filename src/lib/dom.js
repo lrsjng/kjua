@@ -43,21 +43,17 @@ const calc_image_pos = (settings) => {
 };
 
 const calc_label_pos = (ctx, settings) => {
-    const size = settings.size;
-    const font = 'bold ' + settings.mSize * 0.01 * size + 'px ' + settings.fontname;
-
-    ctx.strokeStyle = settings.back;
-    ctx.lineWidth = settings.mSize * 0.01 * size * 0.1;
-    ctx.fillStyle = settings.fontcolor;
+    const font = 'bold ' + settings.mSize * 0.01 * settings.size + 'px ' + settings.fontname;
+    ctx.lineWidth = settings.mSize * 0.01 * settings.size * 0.1;
     ctx.font = font;
 
     const w = ctx.measureText(settings.label).width;
     const sh = settings.mSize * 0.01;
-    const sw = w / size;
+    const sw = w / settings.size;
     const sl = (1 - sw) * settings.mPosX * 0.01;
     const st = (1 - sh) * settings.mPosY * 0.01;
-    const x = sl * size;
-    const y = st * size + 0.75 * settings.mSize * 0.01 * size;
+    const x = sl * settings.size;
+    const y = st * settings.size + 0.75 * settings.mSize * 0.01 * settings.size;
     return {x, y};
 };
 

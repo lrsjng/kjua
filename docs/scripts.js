@@ -89,6 +89,7 @@
 
             label: val_by_id('label'),
             fontname: val_by_id('font'),
+            fontoutline: checked_by_id('fontoutline'),
             fontcolor: val_by_id('fontcolor'),
 
             imageAsCode: checked_by_id('image-as-code'),

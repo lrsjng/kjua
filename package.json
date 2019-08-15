@@ -25,7 +25,7 @@
     "lint": "eslint .",
     "build": "node ghu release",
     "precommit": "npm run -s lint && npm run -s build",
-    "package": "npm run -s build && copyfiles kjua.d.ts README.md package.json dist/"
+    "package": "npm run -s build && copyfiles kjua.d.ts README.md package.json dist/ && copyfiles -u 1 dist/kjua.min.js docs"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

@@ -66,6 +66,7 @@ This can reduce the readability of the code!
 * `label` additional label text (defaults to ``)
 * `fontname` font for additional label text (defaults to `sans-serif`)
 * `fontcolor` font-color for additional label text (defaults to `#333`)
+* `fontoutline` draw an outline on the label text in the color of the `back` (defaults to `true`)
 * `image` additional image (defaults to `undefined`, use an HTMLImageElement or base64-string)
 * `imageAsCode` draw the image as part of the code (defaults to `false`)
 

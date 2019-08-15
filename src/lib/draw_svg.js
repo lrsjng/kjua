@@ -15,7 +15,9 @@ const draw_svg = (qr, settings) => {
         svg.attr("viewBox", "0 0 " + settings.size + " " + settings.size);
     }
     // Rect --> background-color
-    if (!!settings.back) {
+    if (!settings.back || settings.back === '') {
+        svg.select("rect").first().remove();
+    } else {
         svg.select("rect").fill(settings.back);
     }
     // Path --> foreground-color
@@ -24,18 +26,25 @@ const draw_svg = (qr, settings) => {
     }
     if (settings.mode === "label") {
         const ctx = create_canvas(settings);
-        const rect = calc_label_pos(ctx, settings);
+        const labelPos = calc_label_pos(ctx, settings);
         const label = svg.text(add => {
             add.tspan(settings.label);
         });
-        label.x(rect.x);
-        label.y(rect.y);
+        label.x(labelPos.x);
+        label.y(labelPos.y - 14);
         label.attr("fill", settings.fontcolor);
         label.attr("font-family", settings.fontname);
+        label.attr("font-weight", "bold");
         label.attr("font-size", settings.mSize * 0.01 * settings.size + "px");
         // Outline-effect
         if (settings.fontoutline) {
-            // TODO
+            label.attr("paint-order", "stroke");
+            label.attr("stroke-width", settings.mSize * 0.01 * settings.size * 0.1);
+            if (!settings.back || settings.back === '') {
+                label.attr("stroke", "#ffffff");
+            } else {
+                label.attr("stroke", settings.back);
+            }
         }
     } else if (settings.mode === "image") {
         if (settings.imageAsCode) {

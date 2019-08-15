@@ -2,7 +2,15 @@ const {calc_image_pos, calc_label_pos} = require('./dom');
 
 const draw_label = (ctx, settings) => {
     const labelPos = calc_label_pos(ctx, settings);
-    ctx.strokeText(settings.label, labelPos.x, labelPos.y);
+    ctx.fillStyle = settings.fontcolor;
+    if (settings.fontoutline) {
+        if (!settings.back || settings.back === '') {
+            ctx.strokeStyle = "#ffffff";
+        } else {
+            ctx.strokeStyle = settings.back;
+        }
+        ctx.strokeText(settings.label, labelPos.x, labelPos.y);
+    }
     ctx.fillText(settings.label, labelPos.x, labelPos.y);
 };
 
