@@ -16,12 +16,13 @@ const create_canvas = (settings) => {
     return context;
 };
 
-const canvas_to_img = (canvas) => {
+const canvas_to_img = (canvas, settings) => {
     const img = doc.createElement('img');
     set_attr(img, 'crossorigin', 'anonymous');
     set_attr(img, 'src', canvas.toDataURL('image/png'));
     set_attr(img, 'width', get_attr(canvas, 'width'));
     set_attr(img, 'height', get_attr(canvas, 'height'));
+    set_attr(img, 'alt', settings.text);
     img.style.width = canvas.style.width;
     img.style.height = canvas.style.height;
     return img;

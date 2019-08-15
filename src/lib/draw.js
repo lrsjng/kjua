@@ -47,7 +47,7 @@ const draw = (qr, settings) => {
     draw_background(ctx, settings);
     draw_modules(qr, ctx, settings);
     draw_mode(ctx, settings);
-    return settings.render === 'image' ? canvas_to_img(ctx.canvas) : ctx.canvas;
+    return settings.render === 'image' ? canvas_to_img(ctx.canvas, settings) : ctx.canvas;
 };
 
 module.exports = {

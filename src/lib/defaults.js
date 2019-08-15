@@ -24,7 +24,7 @@ module.exports = {
     back: '#fff',
 
     // content
-    text: 'no text',
+    text: '',
 
     // roundend corners in pc: 0..100
     rounded: 0,

@@ -48,7 +48,7 @@ const draw_svg = (qr, settings) => {
         }
     } else if (settings.mode === "image") {
         if (settings.imageAsCode) {
-            const image = canvas_to_img(settings.image);
+            const image = canvas_to_img(settings.image, settings);
             const svgImage = svg.image(image.getAttribute("src"), settings.size, settings.size);
             svgImage.x(0);
             svgImage.y(0);
