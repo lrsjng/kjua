@@ -10,6 +10,8 @@ Dynamically generated QR codes for modern browsers.
 Uses [kjua](https://github.com/lrsjng/kjua) and
 [QR Code Generator](https://github.com/kazuhikoarase/qrcode-generator) (MIT).
 
+If you are looking for a solutions to generate QR Codes with Angular, you can look into [ngx-kjua](https://github.com/werthdavid/ngx-kjua).
+
 # Demo
 
 <img src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/demo.png"/>
