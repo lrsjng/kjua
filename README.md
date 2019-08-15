@@ -84,4 +84,3 @@ More details can be found on [larsjung.de/kjua](https://larsjung.de/kjua/)
 
 Some options do not work when the code is rendered as SVG. These are:
 * rounded
-* when rendering SVG an embedded text doesn't have an outline like in canvas mode
