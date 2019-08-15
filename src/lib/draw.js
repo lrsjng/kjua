@@ -1,6 +1,7 @@
 const draw_module_rounded = require('./draw_rounded');
 const draw_mode = require('./draw_mode');
 const {create_canvas, canvas_to_img} = require('./dom');
+
 const draw_background = (ctx, settings) => {
     if (settings.back != null && settings.back !== "") {
         ctx.fillStyle = settings.back;
@@ -43,15 +44,13 @@ const draw_modules = (qr, ctx, settings) => {
 
 const draw = (qr, settings) => {
     const ctx = create_canvas(settings);
-    let ctx2 = undefined;
-    if (settings.imageAsCode) {
-        ctx2 = create_canvas(settings);
-        draw_modules(qr, ctx2, settings);
-    }
     draw_background(ctx, settings);
     draw_modules(qr, ctx, settings);
-    draw_mode(ctx, ctx2, settings);
+    draw_mode(ctx, settings);
     return settings.render === 'image' ? canvas_to_img(ctx.canvas) : ctx.canvas;
 };
 
-module.exports = draw;
+module.exports = {
+    draw,
+    draw_modules
+};

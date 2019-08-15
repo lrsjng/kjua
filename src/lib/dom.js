@@ -42,8 +42,28 @@ const calc_image_pos = (settings) => {
     return {x, y, iw, ih};
 };
 
+const calc_label_pos = (ctx, settings) => {
+    const size = settings.size;
+    const font = 'bold ' + settings.mSize * 0.01 * size + 'px ' + settings.fontname;
+
+    ctx.strokeStyle = settings.back;
+    ctx.lineWidth = settings.mSize * 0.01 * size * 0.1;
+    ctx.fillStyle = settings.fontcolor;
+    ctx.font = font;
+
+    const w = ctx.measureText(settings.label).width;
+    const sh = settings.mSize * 0.01;
+    const sw = w / size;
+    const sl = (1 - sw) * settings.mPosX * 0.01;
+    const st = (1 - sh) * settings.mPosY * 0.01;
+    const x = sl * size;
+    const y = st * size + 0.75 * settings.mSize * 0.01 * size;
+    return {x, y};
+};
+
 module.exports = {
     create_canvas,
     canvas_to_img,
-    calc_image_pos
+    calc_image_pos,
+    calc_label_pos
 };

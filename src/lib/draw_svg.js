@@ -1,7 +1,8 @@
-const {create_canvas, calc_image_pos} = require('./dom');
+const {create_canvas, calc_image_pos, calc_label_pos, canvas_to_img} = require('./dom');
 const SVGJS = require("svg.js");
 
-const draw_svg = (svgText, settings) => {
+const draw_svg = (qr, settings) => {
+    const svgText = qr.svgText;
     const container = document.createElement("div");
     container.innerHTML = svgText;
     const svgElem = container.firstChild;
@@ -22,10 +23,10 @@ const draw_svg = (svgText, settings) => {
         svg.select("path").fill(settings.fill);
     }
     if (settings.mode === "label") {
-        const rect = calc_text_pos(settings);
+        const ctx = create_canvas(settings);
+        const rect = calc_label_pos(ctx, settings);
         const label = svg.text(add => {
             add.tspan(settings.label);
-
         });
         label.x(rect.x);
         label.y(rect.y);
@@ -37,33 +38,19 @@ const draw_svg = (svgText, settings) => {
             // TODO
         }
     } else if (settings.mode === "image") {
-        const imgPos = calc_image_pos(settings);
-        const image = svg.image(settings.image.getAttribute("src"), imgPos.iw, imgPos.ih);
-        image.x(imgPos.x);
-        image.y(imgPos.y);
+        if (settings.imageAsCode) {
+            const image = canvas_to_img(settings.image);
+            const svgImage = svg.image(image.getAttribute("src"), settings.size, settings.size);
+            svgImage.x(0);
+            svgImage.y(0);
+        } else {
+            const imgPos = calc_image_pos(settings);
+            const svgImage = svg.image(settings.image.getAttribute("src"), imgPos.iw, imgPos.ih);
+            svgImage.x(imgPos.x);
+            svgImage.y(imgPos.y);
+        }
     }
     return svgElem;
-};
-
-const calc_text_pos = (settings) => {
-    const context = create_canvas(settings);
-
-    const size = settings.size;
-    const font = 'bold ' + settings.mSize * 0.01 * size + 'px ' + settings.fontname;
-
-    context.strokeStyle = settings.back;
-    context.lineWidth = settings.mSize * 0.01 * size * 0.1;
-    context.fillStyle = settings.fontcolor;
-    context.font = font;
-
-    const w = context.measureText(settings.label).width;
-    const sh = settings.mSize * 0.01;
-    const sw = w / size;
-    const sl = (1 - sw) * settings.mPosX * 0.01;
-    const st = (1 - sh) * settings.mPosY * 0.01;
-    const x = sl * size;
-    const y = st * size + 0.75 * settings.mSize * 0.01 * size;
-    return {x, y};
 };
 
 module.exports = draw_svg;
