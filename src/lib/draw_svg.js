@@ -1,12 +1,14 @@
 const {create_canvas, calc_image_pos, calc_label_pos, canvas_to_img} = require('./dom');
-const SVGJS = require("svg.js");
+const {SVG, registerWindow} = require('@svgdotjs/svg.js')
 
 const draw_svg = (qr, settings) => {
+    // CHECK does this make problems with server-side rendering?
+    registerWindow(window, document);
     const svgText = qr.svgText;
     const container = document.createElement("div");
     container.innerHTML = svgText;
     const svgElem = container.firstChild;
-    const svg = SVGJS(svgElem);
+    const svg = SVG(svgElem);
 
     // In crisp mode, it is possible that the SVG is not exactly 400px --> fix this
     if (settings.crisp) {
@@ -16,13 +18,13 @@ const draw_svg = (qr, settings) => {
     }
     // Rect --> background-color
     if (!settings.back || settings.back === '') {
-        svg.select("rect").first().remove();
+        svg.findOne("rect").remove();
     } else {
-        svg.select("rect").fill(settings.back);
+        svg.find("rect").fill(settings.back);
     }
     // Path --> foreground-color
     if (!!settings.fill) {
-        svg.select("path").fill(settings.fill);
+        svg.find("path").fill(settings.fill);
     }
     if (settings.mode === "label") {
         const ctx = create_canvas(settings);
@@ -49,12 +51,16 @@ const draw_svg = (qr, settings) => {
     } else if (settings.mode === "image") {
         if (settings.imageAsCode) {
             const image = canvas_to_img(settings.image, settings);
-            const svgImage = svg.image(image.getAttribute("src"), settings.size, settings.size);
+            const svgImage = svg.image(image.getAttribute("src"));
+            svgImage.attr("width", settings.size + "px");
+            svgImage.attr("height", settings.size + "px");
             svgImage.x(0);
             svgImage.y(0);
         } else {
             const imgPos = calc_image_pos(settings);
-            const svgImage = svg.image(settings.image.getAttribute("src"), imgPos.iw, imgPos.ih);
+            const svgImage = svg.image(settings.image.getAttribute("src"));
+            svgImage.attr("width", imgPos.iw + "px");
+            svgImage.attr("height", imgPos.ih + "px");
             svgImage.x(imgPos.x);
             svgImage.y(imgPos.y);
         }
