@@ -1,8 +1,9 @@
 [![NPM version](https://img.shields.io/npm/v/kjua-svg.svg?&label=npm)](https://www.npmjs.com/package/kjua-svg) 
 [![Dependency Status](https://david-dm.org/werthdavid/kjua-svg.svg)](https://david-dm.org/werthdavid/kjua-svg)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) 
 [![Downloads](https://img.shields.io/npm/dm/kjua-svg.svg)](https://npmjs.org/package/kjua-svg)
 
-<img align="right" width="128px" src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/readme-logo.svg"/>
+<img align="right" width="256px" src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/readme-logo.svg"/>
 
 If you find my work useful you can buy me a coffee, I am very thankful for your support. 
 
