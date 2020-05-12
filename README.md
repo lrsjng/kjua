@@ -2,7 +2,12 @@
 [![Dependency Status](https://david-dm.org/werthdavid/kjua-svg.svg)](https://david-dm.org/werthdavid/kjua-svg)
 [![Downloads](https://img.shields.io/npm/dm/kjua-svg.svg)](https://npmjs.org/package/kjua-svg)
 
-<img align="right" src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/readme-logo.svg"/>
+<img align="right" width="128px" src="https://raw.githubusercontent.com/werthdavid/kjua/master/docs/readme-logo.svg"/>
+
+If you find my work useful you can buy me a coffee, I am very thankful for your support. 
+
+<a href="https://www.buymeacoffee.com/werthdavid" target="_blank"><img width="140" src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee"></a>
+
 
 # kjua-svg
 
