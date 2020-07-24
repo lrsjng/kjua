@@ -1,5 +1,5 @@
 module.exports = {
-    // render method: 'canvas' or 'image'
+    // render method: 'canvas', 'image' or 'svg'
     render: 'image',
 
     // render pixel-perfect lines

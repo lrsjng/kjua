@@ -1,9 +1,8 @@
 const wrap_ctx = ctx => {
     return {
-        c: ctx,
-        m(...args) {this.c.moveTo(...args); return this;},
-        l(...args) {this.c.lineTo(...args); return this;},
-        a(...args) {this.c.arcTo(...args); return this;}
+        m(x, y) {ctx.moveTo(x, y); return this;},
+        l(x, y) {ctx.lineTo(x, y); return this;},
+        a(...args) {ctx.arcTo(...args); return this;}
     };
 };
 
@@ -64,27 +63,27 @@ const draw_mod = (qr, ctx, settings, width, row, col) => {
     const bottom = top + width;
     const radius = settings.rounded * 0.005 * width;
 
-    const isDark = qr.isDark;
-    const rowT = row - 1;
-    const rowB = row + 1;
-    const colL = col - 1;
-    const colR = col + 1;
-    const dC = isDark(row, col);
-    const dNW = isDark(rowT, colL);
-    const dN = isDark(rowT, col);
-    const dNE = isDark(rowT, colR);
-    const dE = isDark(row, colR);
-    const dSE = isDark(rowB, colR);
-    const dS = isDark(rowB, col);
-    const dSW = isDark(rowB, colL);
-    const dW = isDark(row, colL);
+    const is_dark = qr.isDark;
+    const row_n = row - 1;
+    const row_s = row + 1;
+    const col_w = col - 1;
+    const col_e = col + 1;
+    const dark_center = is_dark(row, col);
+    const dark_nw = is_dark(row_n, col_w);
+    const dark_n = is_dark(row_n, col);
+    const dark_ne = is_dark(row_n, col_e);
+    const dark_e = is_dark(row, col_e);
+    const dark_se = is_dark(row_s, col_e);
+    const dark_s = is_dark(row_s, col);
+    const dark_sw = is_dark(row_s, col_w);
+    const dark_w = is_dark(row, col_w);
 
     ctx = wrap_ctx(ctx);
 
-    if (dC) {
-        draw_dark(ctx, left, top, right, bottom, radius, !dN && !dW, !dN && !dE, !dS && !dE, !dS && !dW);
+    if (dark_center) {
+        draw_dark(ctx, left, top, right, bottom, radius, !dark_n && !dark_w, !dark_n && !dark_e, !dark_s && !dark_e, !dark_s && !dark_w);
     } else {
-        draw_light(ctx, left, top, right, bottom, radius, dN && dW && dNW, dN && dE && dNE, dS && dE && dSE, dS && dW && dSW);
+        draw_light(ctx, left, top, right, bottom, radius, dark_n && dark_w && dark_nw, dark_n && dark_e && dark_ne, dark_s && dark_e && dark_se, dark_s && dark_w && dark_sw);
     }
 };
 

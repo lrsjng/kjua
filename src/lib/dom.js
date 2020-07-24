@@ -1,7 +1,11 @@
 const win = global.window;
 const doc = win.document;
 const dpr = win.devicePixelRatio || 1;
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
 const create = name => doc.createElement(name);
+const create_svg_el = name => doc.createElementNS(SVG_NS, name);
 const get_attr = (el, key) => el.getAttribute(key);
 const set_attr = (el, key, value) => el.setAttribute(key, value);
 
@@ -26,6 +30,8 @@ const canvas_to_img = canvas => {
 };
 
 module.exports = {
+    create_svg_el,
+    set_attr,
     create_canvas,
     canvas_to_img,
     dpr
