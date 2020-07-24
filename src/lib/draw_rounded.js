@@ -63,7 +63,7 @@ const draw_mod = (qr, ctx, settings, width, row, col) => {
     const bottom = top + width;
     const radius = settings.rounded * 0.005 * width;
 
-    const is_dark = qr.isDark;
+    const is_dark = qr.is_dark;
     const row_n = row - 1;
     const row_s = row + 1;
     const col_w = col - 1;

@@ -8,7 +8,7 @@ const draw_background = (ctx, settings) => {
 };
 
 const draw_module_default = (qr, ctx, settings, width, row, col) => {
-    if (qr.isDark(row, col)) {
+    if (qr.is_dark(row, col)) {
         ctx.rect(col * width, row * width, width, width);
     }
 };
@@ -19,7 +19,7 @@ const draw_modules = (qr, ctx, settings) => {
     }
 
     const draw_module = settings.rounded > 0 && settings.rounded <= 100 ? draw_module_rounded : draw_module_default;
-    const mod_count = qr.moduleCount;
+    const mod_count = qr.module_count;
 
     let mod_size = settings.size / mod_count;
     let offset = 0;
