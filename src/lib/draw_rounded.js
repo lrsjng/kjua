@@ -1,4 +1,4 @@
-const wrap_ctx = ctx => {
+const create_draw_ctx = ctx => {
     return {
         m(x, y) {ctx.moveTo(x, y); return this;},
         l(x, y) {ctx.lineTo(x, y); return this;},
@@ -56,7 +56,7 @@ const draw_light = (ctx, l, t, r, b, rad, nw, ne, se, sw) => {
     }
 };
 
-const draw_mod = (qr, ctx, settings, width, row, col) => {
+const draw_module_rounded = (qr, ctx, settings, width, row, col) => {
     const left = col * width;
     const top = row * width;
     const right = left + width;
@@ -78,13 +78,12 @@ const draw_mod = (qr, ctx, settings, width, row, col) => {
     const dark_sw = is_dark(row_s, col_w);
     const dark_w = is_dark(row, col_w);
 
-    ctx = wrap_ctx(ctx);
-
+    const draw_ctx = create_draw_ctx(ctx);
     if (dark_center) {
-        draw_dark(ctx, left, top, right, bottom, radius, !dark_n && !dark_w, !dark_n && !dark_e, !dark_s && !dark_e, !dark_s && !dark_w);
+        draw_dark(draw_ctx, left, top, right, bottom, radius, !dark_n && !dark_w, !dark_n && !dark_e, !dark_s && !dark_e, !dark_s && !dark_w);
     } else {
-        draw_light(ctx, left, top, right, bottom, radius, dark_n && dark_w && dark_nw, dark_n && dark_e && dark_ne, dark_s && dark_e && dark_se, dark_s && dark_w && dark_sw);
+        draw_light(draw_ctx, left, top, right, bottom, radius, dark_n && dark_w && dark_nw, dark_n && dark_e && dark_ne, dark_s && dark_e && dark_se, dark_s && dark_w && dark_sw);
     }
 };
 
-module.exports = draw_mod;
+module.exports = draw_module_rounded;

@@ -113,7 +113,6 @@ const create_path = (qr, settings) => {
 };
 
 const add_label = (el, settings) => {
-    console.warn('svg label not implemented yet', el, settings);
     const size = settings.size;
     const font = 'bold ' + settings.mSize * 0.01 * size + 'px ' + settings.fontname;
 
