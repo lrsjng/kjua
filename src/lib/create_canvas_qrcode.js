@@ -1,4 +1,4 @@
-const {create_canvas, canvas_to_img, dpr} = require('./dom');
+const dom = require('./dom');
 const draw_module_rounded = require('./draw_rounded');
 const draw_mode = require('./draw_mode');
 
@@ -49,13 +49,13 @@ const draw = (qr, ctx, settings) => {
 };
 
 const create_canvas_qrcode = (qr, settings, as_image) => {
-    const ratio = settings.ratio || dpr;
-    const canvas = create_canvas(settings.size, ratio);
+    const ratio = settings.ratio || dom.dpr;
+    const canvas = dom.create_canvas(settings.size, ratio);
     const context = canvas.getContext('2d');
 
     context.scale(ratio, ratio);
     draw(qr, context, settings);
-    return as_image ? canvas_to_img(canvas) : canvas;
+    return as_image ? dom.canvas_to_img(canvas) : canvas;
 };
 
 module.exports = create_canvas_qrcode;

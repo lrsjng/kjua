@@ -1,6 +1,6 @@
 {
   "name": "kjua",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Dynamically generated QR codes for modern browsers.",
   "homepage": "https://larsjung.de/kjua/",
   "author": "Lars Jung <lrsjng@gmail.com> (https://larsjung.de)",

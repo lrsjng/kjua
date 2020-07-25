@@ -38,9 +38,11 @@ const canvas_to_img = canvas => {
 };
 
 module.exports = {
-    create_svg_el,
+    dpr,
+    SVG_NS,
     get_attr,
+    create_el,
+    create_svg_el,
     create_canvas,
-    canvas_to_img,
-    dpr
+    canvas_to_img
 };

@@ -1,4 +1,4 @@
-const {create_svg_el, get_attr} = require('./dom');
+const {SVG_NS, get_attr, create_svg_el} = require('./dom');
 
 const create_draw_ctx = ctx => {
     const rnd = x => Math.round(x * 10) / 10;
@@ -116,9 +116,9 @@ const add_label = (el, settings) => {
     const size = settings.size;
     const font = 'bold ' + settings.mSize * 0.01 * size + 'px ' + settings.fontname;
 
-    const {create_canvas, dpr} = require('./dom');
-    const ratio = settings.ratio || dpr;
-    const ctx = create_canvas(size, ratio).getContext('2d');
+    const dom = require('./dom');
+    const ratio = settings.ratio || dom.dpr;
+    const ctx = dom.create_canvas(size, ratio).getContext('2d');
     ctx.strokeStyle = settings.back;
     ctx.lineWidth = settings.mSize * 0.01 * size * 0.1;
     ctx.fillStyle = settings.fontcolor;
@@ -176,7 +176,7 @@ const create_svg_qrcode = (qr, settings) => {
     const mode = settings.mode;
 
     const svg_el = create_svg_el('svg', {
-        xmlns: 'http://www.w3.org/2000/svg',
+        xmlns: SVG_NS,
         width: size,
         height: size,
         viewBox: `0 0 ${size} ${size}`
