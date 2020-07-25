@@ -3,8 +3,10 @@ const draw_module_rounded = require('./draw_rounded');
 const draw_mode = require('./draw_mode');
 
 const draw_background = (ctx, settings) => {
-    ctx.fillStyle = settings.back;
-    ctx.fillRect(0, 0, settings.size, settings.size);
+    if (settings.back) {
+        ctx.fillStyle = settings.back;
+        ctx.fillRect(0, 0, settings.size, settings.size);
+    }
 };
 
 const draw_module_default = (qr, ctx, settings, width, row, col) => {

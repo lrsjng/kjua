@@ -7,13 +7,8 @@ module.exports = options => {
     const settings = Object.assign({}, defaults, options);
     const qr = qrcode(settings.text, settings.ecLevel, settings.minVersion, settings.quiet);
 
-    if (settings.render === 'canvas') {
-        return create_canvas_qrcode(qr, settings, false);
-    } else if (settings.render === 'image') {
-        return create_canvas_qrcode(qr, settings, true);
-    } else if (settings.render === 'svg') {
+    if (settings.render === 'svg') {
         return create_svg_qrcode(qr, settings);
     }
-
-    return null;
+    return create_canvas_qrcode(qr, settings, settings.render === 'image');
 };

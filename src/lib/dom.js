@@ -4,26 +4,34 @@ const dpr = win.devicePixelRatio || 1;
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
-const create = name => doc.createElement(name);
-const create_svg_el = name => doc.createElementNS(SVG_NS, name);
 const get_attr = (el, key) => el.getAttribute(key);
-const set_attr = (el, key, value) => el.setAttribute(key, value);
+const set_attrs = (el, obj) => {
+    Object.keys(obj || {}).forEach(key => {
+        el.setAttribute(key, obj[key]);
+    });
+    return el;
+};
+
+const create_el = (name, obj) => set_attrs(doc.createElement(name), obj);
+const create_svg_el = (name, obj) => set_attrs(doc.createElementNS(SVG_NS, name), obj);
 
 const create_canvas = (size, ratio) => {
-    const canvas = create('canvas');
-    set_attr(canvas, 'width', size * ratio);
-    set_attr(canvas, 'height', size * ratio);
+    const canvas = create_el('canvas', {
+        width: size * ratio,
+        height: size * ratio
+    });
     canvas.style.width = `${size}px`;
     canvas.style.height = `${size}px`;
     return canvas;
 };
 
 const canvas_to_img = canvas => {
-    const img = create('img');
-    set_attr(img, 'crossorigin', 'anonymous');
-    set_attr(img, 'src', canvas.toDataURL('image/png'));
-    set_attr(img, 'width', get_attr(canvas, 'width'));
-    set_attr(img, 'height', get_attr(canvas, 'height'));
+    const img = create_el('img', {
+        crossOrigin: 'anonymous',
+        src: canvas.toDataURL('image/png'),
+        width: get_attr(canvas, 'width'),
+        height: get_attr(canvas, 'height')
+    });
     img.style.width = canvas.style.width;
     img.style.height = canvas.style.height;
     return img;
@@ -31,7 +39,7 @@ const canvas_to_img = canvas => {
 
 module.exports = {
     create_svg_el,
-    set_attr,
+    get_attr,
     create_canvas,
     canvas_to_img,
     dpr
